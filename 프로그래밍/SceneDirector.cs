@@ -9,43 +9,58 @@ public class SceneDirector : MonoBehaviour
     //여기서 게임오브젝트 접근해가지구 숫자 조절해도 될듯.. 카운트나 id같은겅ㅇㅇ
     //씬이 바뀔때는 상관없는데, 챕터 바뀔때마다는 꼭 한번씩 id, qeustCount초기화해줘야함. 메인화면에서 들어가는 경우도 있기 때문에.
 
+    public void GoToTitle()
+    {
+        SoundManager2.instance.PlaySound("IntroBGM", 0);
+        SceneManager.LoadScene("Main");
+    }
+
     public void GoToMainMenu()
     {
-        SoundManager.instance.PlaySound();
+        SoundManager2.instance.PlaySound("Button0", 1);
         SceneManager.LoadScene("MainMenu");
+        SoundManager2.instance.StopSound("IntroBGM",0);
+        SoundManager2.instance.PlaySound("SelectChapterBGM", 0);
     }
     public void ChangeChapterOne()
     {
-        SoundManager.instance.PlaySound();
+        SoundManager2.instance.PlaySound("Button0", 1);
         SceneManager.LoadScene("chap1.Scene_1");
+        SoundManager2.instance.StopSound("SelectChapterBGM", 0);
+        SoundManager2.instance.PlaySound("Chapter1BGM", 0);
     }
     public void ChapOneFirstMiniGame()
     {
-        SoundManager.instance.PlaySound();
+        SoundManager2.instance.PlaySound("Button0", 1);
         SceneManager.LoadScene("chap1.Scene_2");
     }
     public void ChangeChapterOneScene3()
     {
-        SoundManager.instance.PlaySound();
+        SoundManager2.instance.PlaySound("Button0", 1);
         SceneManager.LoadScene("chap1.Scene_3");
     }
     public void ChapOneSecondMiniGame()
     {
-        SoundManager.instance.PlaySound();
+        SoundManager2.instance.PlaySound("Button0", 1);
         SceneManager.LoadScene("chap1.Scene_4");
     }
     public void ChapTwoSceneOne()
     {
-        SoundManager.instance.PlaySound();
+        SoundManager2.instance.PlaySound("Button0", 1);
         SceneManager.LoadScene("chap2.Scene_1");
         DataController.Instance.gameData.chapter1Clear = true;
         DataController.Instance.SaveGameData();
     }
     public void ChapTwoSceneTwo()
     {
-        SoundManager.instance.PlaySound();
+        SoundManager2.instance.PlaySound("Button0", 1);
         if (DataController.Instance.gameData.chapter1Clear == true)
+        {
             SceneManager.LoadScene("chap2.Scene_2");
+            SoundManager2.instance.StopSound("Chapter1BGM", 0);
+            SoundManager2.instance.PlaySound("Chapter2BGM", 0);
+        }
+
         else
         {
             gameManager.chapterPanel.SetActive(true);
@@ -53,56 +68,77 @@ public class SceneDirector : MonoBehaviour
             Invoke("setActiveFalse", 2);
         }
     }
-    public void ChapTwoFirstMiniGame()
+    public void ChapTwoFirstMiniGame() // 케이크 나눠주기
     {
-        SoundManager.instance.PlaySound();
+        SoundManager2.instance.PlaySound("Button0", 1);
         SceneManager.LoadScene("chap2.Scene_3");
     }
     public void Chap2Scene4()
     {
-        SoundManager.instance.PlaySound();
+        SoundManager2.instance.PlaySound("Button0", 1);
         SceneManager.LoadScene("chap2.Scene_4");
     }
-    public void Chap2MiniGame2()
+
+    public void Chap2MiniGame2() // 도형찾기(수수께끼)
     {
-        SoundManager.instance.PlaySound();
+        SoundManager2.instance.PlaySound("Button0", 1);
+        SceneManager.LoadScene("chap2.Scene_5");
+    }
+
+    public void Chap2Scene6()
+    {
+        SoundManager2.instance.PlaySound("Button0", 1);
+        SceneManager.LoadScene("chap2.Scene_6");
+    }
+
+    public void Chap2MiniGame3() // 쿠키나눠주기
+    {
+        SoundManager2.instance.PlaySound("Button0", 1);
         SceneManager.LoadScene("chap2.Scene_7");
     }
+
     public void Chap2Scene8()
     {
-        SoundManager.instance.PlaySound();
+        SoundManager2.instance.PlaySound("Button0", 1);
         SceneManager.LoadScene("chap2.Scene_8");
     }
-    public void Chap2MiniGame3()
+
+    public void Chap2MiniGame4() // 찻잔 계산
     {
-        SoundManager.instance.PlaySound();
+        SoundManager2.instance.PlaySound("Button0", 1);
         SceneManager.LoadScene("chap2.Scene_9");
     }
     public void Chap2Scene10()
     {
-        SoundManager.instance.PlaySound();
+        SoundManager2.instance.PlaySound("Button0", 1);
         SceneManager.LoadScene("chap2.Scene_10");
     }
-    public void Chap2MiniGame4()
+
+    public void Chap2MiniGame5() // 시계 보기(디지털 시계)
     {
-        SoundManager.instance.PlaySound();
+        SoundManager2.instance.PlaySound("Button0", 1);
         SceneManager.LoadScene("chap2.Scene_11");
     }
     public void Chap2Scene12()
     {
-        SoundManager.instance.PlaySound();
+        SoundManager2.instance.PlaySound("Button0", 1);
         SceneManager.LoadScene("chap2.Scene_12");
     }
+
     public void Chap3Scene1()
     {
-        SoundManager.instance.PlaySound();
+        SoundManager2.instance.PlaySound("Button0", 1);
         SceneManager.LoadScene("chap3.Scene_1");
     }
     public void ChapThreeSceneTwo()
     {
-        SoundManager.instance.PlaySound();
+        SoundManager2.instance.PlaySound("Button0", 1);
         if (DataController.Instance.gameData.chapter2Clear == true)
+        {
+            SoundManager2.instance.StopSound("Chapter2BGM", 0);
+            SoundManager2.instance.PlaySound("Chapter3BGM", 0);
             SceneManager.LoadScene("chap3.Scene_2");
+        }
         else if (DataController.Instance.gameData.chapter2Clear == false)
         {
             gameManager.chapterPanel.SetActive(true);
@@ -114,58 +150,58 @@ public class SceneDirector : MonoBehaviour
 
     public void Chap3Scene2()
     {
-        SoundManager.instance.PlaySound();
+        SoundManager2.instance.PlaySound("Button0", 1);
         SceneManager.LoadScene("chap3.Scene_2");
     }
 
-    public void Chap3MiniGame1()
+    public void Chap3MiniGame1() // 규칙 찾아 꾸미기
     {
-        SoundManager.instance.PlaySound();
+        SoundManager2.instance.PlaySound("Button0", 1);
         SceneManager.LoadScene("chap3.Scene_3");
     }
     public void Chap3Scene4()
     {
-        SoundManager.instance.PlaySound();
+        SoundManager2.instance.PlaySound("Button0", 1);
         SceneManager.LoadScene("chap3.Scene_4");
     }
-    public void Chap3MiniGame2()
+    public void Chap3MiniGame2() // 빼기??인가
     {
-        SoundManager.instance.PlaySound();
+        SoundManager2.instance.PlaySound("Button0", 1);
         SceneManager.LoadScene("chap3.Scene_5");
     }
     public void Chap3Scene6()
     {
-        SoundManager.instance.PlaySound();
+        SoundManager2.instance.PlaySound("Button0", 1);
         SceneManager.LoadScene("chap3.Scene_6");
     }
-    public void Chap3MiniGame3()
+    public void Chap3MiniGame3() // 빼기 아니면 더하기
     {
-        SoundManager.instance.PlaySound();
+        SoundManager2.instance.PlaySound("Button0", 1);
         SceneManager.LoadScene("chap3.Scene_7");
     }
     public void Chap3Scene8()
     {
-        SoundManager.instance.PlaySound();
+        SoundManager2.instance.PlaySound("Button0", 1);
         SceneManager.LoadScene("chap3.Scene_8");
     }
-    public void Chap3MiniGame4()
+    public void Chap3MiniGame4() //홀짝홀짝
     {
-        SoundManager.instance.PlaySound();
+        SoundManager2.instance.PlaySound("Button0", 1);
         SceneManager.LoadScene("chap3.Scene_9");
     }
     public void Chap3Scene10()
     {
-        SoundManager.instance.PlaySound();
+        SoundManager2.instance.PlaySound("Button0", 1);
         SceneManager.LoadScene("chap3.Scene_10");
     }
     public void Ending()
     {
-        SoundManager.instance.PlaySound();
+        SoundManager2.instance.PlaySound("Button0", 1);
         SceneManager.LoadScene("Ending");
     }
     void setActiveFalse()
     {
-        SoundManager.instance.PlaySound();
+        SoundManager2.instance.PlaySound("Button0", 1);
         gameManager.chapterPanel.SetActive(false);
     }
 }
