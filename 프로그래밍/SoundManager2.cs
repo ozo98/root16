@@ -118,6 +118,11 @@ public class SoundManager2 : MonoBehaviour
 
     }
 
+    void StopVoiceSound(string p_name)
+    {
+        voicePlayer.Stop();
+    }
+
     /// <summary>
     /// p_Type : 0 -> 브금 재생
     /// p_Type : 1 -> 효과음재생
@@ -134,5 +139,6 @@ public class SoundManager2 : MonoBehaviour
     {
         if (p_Type == 0) StopBGM(p_name);
         //else if (p_Type == 1) StopAllEffectSound(p_name);
+        else if (p_Type == 2) StopVoiceSound(p_name);
     }
 }

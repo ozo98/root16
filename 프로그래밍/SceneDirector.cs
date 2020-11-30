@@ -129,15 +129,18 @@ public class SceneDirector : MonoBehaviour
     {
         SoundManager2.instance.PlaySound("Button0", 1);
         SceneManager.LoadScene("chap3.Scene_1");
+        DataController.Instance.gameData.chapter2Clear = true;
+        DataController.Instance.SaveGameData();
     }
+
     public void ChapThreeSceneTwo()
     {
         SoundManager2.instance.PlaySound("Button0", 1);
         if (DataController.Instance.gameData.chapter2Clear == true)
         {
+            SceneManager.LoadScene("chap3.Scene_2");
             SoundManager2.instance.StopSound("Chapter2BGM", 0);
             SoundManager2.instance.PlaySound("Chapter3BGM", 0);
-            SceneManager.LoadScene("chap3.Scene_2");
         }
         else if (DataController.Instance.gameData.chapter2Clear == false)
         {
@@ -145,7 +148,6 @@ public class SceneDirector : MonoBehaviour
             gameManager.chapterText.text = "챕터2를 먼저 클리어해야 합니다.";
             Invoke("setActiveFalse", 2);
         }
-
     }
 
     public void Chap3Scene2()
