@@ -7,12 +7,21 @@ using UnityEngine.Video;
 
 public class IntroScript : MonoBehaviour
 {
-    public VideoPlayer videoPlayer;
     public SceneDirector sceneDirector;
+    public int time;
 
     public void Start()
     {
-        Invoke("LoadNextScene", 21);
+        Scene scene = SceneManager.GetActiveScene();
+        int curScene = scene.buildIndex;
+        if(curScene == 0) //인트로 씬이라면
+        {
+            Invoke("LoadTitle", time);
+        }
+        if (curScene == 29) //엔딩 씬이라면
+        {
+            Invoke("LoadCredit", time);
+        }
     }
 
     void Update()
@@ -20,9 +29,12 @@ public class IntroScript : MonoBehaviour
 
     }
 
-    public void LoadNextScene()
+    public void LoadTitle()
     {
-        //다음 씬을 불러온다.
         sceneDirector.GoToTitle();
+    }
+    public void LoadCredit()
+    {
+        sceneDirector.EndingCredit();
     }
 }

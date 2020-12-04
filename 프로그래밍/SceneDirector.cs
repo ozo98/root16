@@ -198,12 +198,25 @@ public class SceneDirector : MonoBehaviour
     }
     public void Ending()
     {
-        SoundManager2.instance.PlaySound("Button0", 1);
+        SendMessage("Fade");
         SceneManager.LoadScene("Ending");
+        SoundManager2.instance.StopSound("Chapter3BGM", 0);
+        SoundManager2.instance.PlaySound("IntroBGM", 0);
+        DataController.Instance.gameData.chapter3Clear = true;
+        DataController.Instance.SaveGameData();
+    }
+    public void EndingCredit()
+    {
+        SendMessage("Fade");
+        SceneManager.LoadScene("EndingCredit");
     }
     void setActiveFalse()
     {
         SoundManager2.instance.PlaySound("Button0", 1);
         gameManager.chapterPanel.SetActive(false);
+    }
+    public void Quit()
+    {
+        Application.Quit();
     }
 }

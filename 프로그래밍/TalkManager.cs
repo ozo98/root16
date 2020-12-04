@@ -142,7 +142,7 @@ public class TalkManager : MonoBehaviour
             "고마워요! :1:audio_ch2_6_13",
             "내가 마술을 써서 갈 거니까 놀라지 마! :3:audio_ch2_6_14",
             ":0"
-        }); ;
+        });
 
         talkData.Add(8, new string[] {
             "여기가 여왕님이 사는 성이야!:3:audio_ch3_1_1",
@@ -195,7 +195,7 @@ public class TalkManager : MonoBehaviour
             "도와줘서 고맙구나. 앨리스. :6:audio_ch3_5_1",
             "약속대로 너를 집으로 보내줄게. :6:audio_ch3_5_2",
             "고마워요. 여왕님! :1:audio_ch3_5_3",
-            ":0"
+            ":None"
         });
     }
 
